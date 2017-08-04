@@ -5,6 +5,27 @@
 	<title>test</title>
 </head>
 <body>
-	1111测试密码
+	<h1 id="text">哈哈</h1>
+	<div id="div" style="color:red;font-size:20px" onclick="myalert()">
+	<p>111</p>
+	<p>222</p>
+	<p>333</p>
+	<p>444</p>
+	</div>
+	<script>
+	var myalert = function (){
+		alert('my alert')
+	};
+		var txt = document.getElementById('div');
+		console.log(txt);
+		var allchild = txt.childNodes;
+		// allchild.push(777);
+		var childArr = Array.prototype.slice.call(allchild,200)
+		console.log(childArr);
+		childArr.push(777);
+		console.log(childArr);
+		console.log(txt.style);
+		console.log(txt.getAttribute('style'));
+	</script>
 </body>
 </html>

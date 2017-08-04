@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<script>
+		//---------------------------------------------------------
+		// var sleep = function (time) {
+		// 	return new Promise(function (resolve, reject) {
+		// 		setTimeout(function () {
+		// 			resolve();
+		// 		}, time);
+		// 	})
+		// };
+		// //async 表示 这是一个async异步函数 ， await只能用在这个函数里面 。
+		// var start = async function () {
+		// 	// 在这里使用起来就像同步代码那样直观
+		// 	console.log('start');
+		// 	await sleep(3000);
+		// 	console.log('end');
+		// };
+		// start();
+
+
+		//---------------------------------------------------------
+		// var sleep = function(time){
+		// 	return new Promise(function(resolve,reject){
+		// 		setTimeout(function(){
+		// 			//返回reject
+		// 			reject("reject");
+		// 			//返回resolve;
+		// 			// resolve('resolve');
+					
+		// 		},time);
+		// 	})
+		// };
+		// var start = async function(){
+		// 	try {
+		// 		let result = await sleep(2000);
+		// 		console.log(result);     //打印出resolve;
+		// 	}catch (err){
+		// 		console.log(err);        //打印出reject;
+		// 	}
+		// };
+		// start();
+
+
+		//---------------------------------------------------------
+		//循环多个await;
+		var sleep = function(time){
+			return new Promise(function(resolve,reject){
+				setTimeout(function(){
+					resolve('resolve');
+				},time);
+			})
+		};
+		
+			var start = async function(){
+				for(var i = 0; i< 10; i++){
+					result = await sleep(2000);
+					console.log('第'+i+'个:'+result);     //打印出resolve;
+				};
+			};
+			start();
+			
+		
+
+
+
+
+	</script>
+</body>
+</html>

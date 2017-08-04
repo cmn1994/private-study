@@ -1,0 +1,40 @@
+.chap10 .box1 p{
+	float: left;
+}
+/*.chap10 .box1 img{width: 100px; height: 100px;margin: 50px;float: left;}*/
+
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.red {
+	background: red;
+}
+.blue {
+	background: blue;
+}
+.chap10 p.aside {
+	float: left;
+	border: 1px solid;
+}
+.chap10 .box3 {
+	width: 100px;
+}
+.chap10 .box3 div {
+	width: 60px;
+	height: 60px;
+}
+
+
+
+
+
+
+
+
+
+
+
+

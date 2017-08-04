@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js面向对象</title>
+</head>
+<body>
+	<script>
+	//19new自定义实现----------------------------------
+		// function p() {
+		// 	this.name = '11';
+
+		// 	setTimeout(function(){
+		// 		this.age = '22';
+		// 		console.log(o);
+		// 	},1000)
+		// };
+		// var o = {};
+		// p.call(o);   //相当于o.p();
+		// console.log(o.name);
+
+
+	//20原形，new，闭包----------------------------------
+		// function F(){};
+		// var f = new F();
+		// console.log(f);
+		// console.log(f.__proto__);
+		// console.log(f.__proto__.__proto__);
+		// console.log(f.__proto__.__proto__.__proto__);
+
+	//21封装----------------------------------
+		// function Person(name){
+		// 	this.name = name;
+		// };
+		// Person.usetools = true;
+		// console.log(Person.usetools);
+		// var p1 = new Person();
+		// console.log(p1.usetools);
+
+	//22浅拷贝----------------------------------
+		var person = {
+			name: 'mini',
+			age: 20,
+			address: {
+				home : 'home',
+				office: 'office'
+			}
+		};
+
+		var feer = {
+			language: 'javascript'
+		};
+
+		function extend(parent,child){
+			var child = child || {};
+			for(var prop in parent){
+				child[prop] = parent[prop];
+			}
+		};
+		extend(person,feer);
+  
+		console.log(feer.name);    //mini
+		console.log(feer.address);  //{home : 'home',office: 'office'};
+		feer.name = 'chenmingni';
+		console.log(person.name);        //mini(保持不变)
+		feer.address.home = 'shenzhen';   
+		console.log(person.address);    //{home : 'shenzhen',office: 'office'};（发生改变）
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//解构赋值-------------
+		// var tmp = new Date();
+
+		// function f() {
+		//   console.log(tmp);
+		//   if (false) {
+		//     var tmp = 'hello world';
+		//   };
+
+		// }
+
+		// f(); // undefined
+
+		
+		// {
+		// 	function f(){
+		// 		return 2;
+		// 	};
+		//   let t = f();
+		//   t = t * t + 1;
+		//   console.log(t);
+		// }
+
+  //       function example1() {
+  //           return [1, 2, 3];
+  //       }
+  //       let [a, b, c] = example1();
+
+  //       // 返回一个对象
+
+  //       function example2() {
+  //           return {
+  //               foo: 1,
+  //               bar: 2
+  //           };
+  //       }
+  //       let { foo, bar } = example2();
+  //       console.log(foo);
+  //       console.log(bar);
+
+        //字符的扩展-------------
+  //       var aa = '12'.padStart(10, 'YYYY-MM-DD') // "YYYY-MM-12"
+  //       console.log(aa);
+		// '09-12'.padStart(10, 'YYYY-MM-DD') // "YYYY-09-12"
+		
+		//数组的扩展--------------
+		// var five = [1,2,3,4,5].find((n) => n>2);
+		// console.log(five);
+
+
+		// let letter = ['a', 'b', 'c'];
+		// let entries = letter.entries();
+		// console.log(letter.keys());
+		// console.log(entries.next().value); // [0, 'a']
+		// console.log(entries.next().value); // [1, 'b']
+		// console.log(entries.next().value); // [2, 'c']
+
+		//set map--------------
+		// var xixi = [2,4,6].filter(function(val){
+		// 	return val < 5;
+		// });
+		// console.log(xixi);
+
+		// var haha = [1,2,3].map(function(val){
+		// 	return val * 3
+		// });
+		// console.log(haha);
+
+		// var hehe = new Set([1,2,3,4,5].map(function(val){
+		// 	return val * 2;
+		// }));
+		// console.log(hehe);
+
+		// var map = new Map();
+		// map.set('a',555);
+		// console.log(map.get('a'));    //555
+		// map.set(['b'],555);
+		// console.log(map.get(['b']));   //undefined
+		// map.set({o:'haha'},555);
+		// console.log(map.get({o:'haha'}));   //undefined
+
+		//因vuex学习解构赋值；
+		// var obj = {
+		// 	boo: function(str){
+		// 		console.log(str);
+		// 	}
+		// }
+		// var foo = function(obj){
+		// 	obj.boo('123');
+		// };
+		// var koo = function({boo}){
+		// 	boo('123');
+		// }
+		// // foo(obj);
+		// koo(obj);
+
+		//---------Proxy------------
+		// var proxy = new Proxy(target, handler);
+		var obj = new Proxy({},{
+			get: function(target,key,receiver) {
+				console.log(`getting ${key}`);
+				// return Reflect.get(target,key,receiver);
+				if(key = 'addAge') {
+					return Reflect.get(target,key,receiver) + 5;
+				}
+			},
+			set: function(target,key,value,receiver) {
+				console.log(`setting ${key}`);
+				return Reflect.set(target,key,value,receiver);
+			},
+			addAge: function(age) {
+				console.log(age);
+				return age + 1;
+			}
+		});
+
+		obj.count = 1;
+		obj.addAge = 10;
+		++obj.count;
+		console.log(obj.addAge);
+
+
+
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>二分法demo</title>
+    <!-- <script type="text/javascript" src="./libs/d3.min.js"></script> -->
+    <script type="text/javascript" src="./libs/d3.v4.min.js"></script>
+</head>
+<style type="text/css">
+    
+</style>
+<body>
+<script type="text/javascript">
+    var data = [
+        {index:0,num:1},
+        {index:1,num:4},
+        {index:2,num:8},
+        {index:3,num:9},
+        {index:4,num:14},
+        {index:5,num:16},
+        {index:6,num:22},
+        {index:7,num:56}
+    ];
+
+    var bisectNum = d3.bisector(function(d) { return d.num; }).left;
+    var x0 = 34;
+    var i = bisectNum(data, x0, 1);
+    console.log(i);
+    console.log(data[i-1]);
+    console.log(data[i]);
+
+
+    
+
+    const xScale = d3.scaleLinear()
+                .domain([0, 100])
+                .rangeRound([0, 300]);
+
+
+    const xAxis = d3.axisBottom()
+            .scale(xScale)
+            .tickValues(d3.range(0, 100, 3));
+
+    d3.select('body').append('g')
+                .attr('width',500)
+                .attr('height',100)
+        .attr('class', 'x-axis')
+        .call(xAxis);
+
+        d3.select('.x-axis').select('path').attr('fill','red');
+
+</script>
+</body>
+</html>

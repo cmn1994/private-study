@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>测试————30分钟掌握ES6/ES2015核心内容http://www.jianshu.com/p/ebfeb687eb70</title>
+	<style>
+		body{
+			padding: 50px;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li class="item">1</li>
+		<li class="item">2</li>
+		<li class="item">3</li>
+		<li class="item">4</li>
+		<li class="item">5</li>
+	</ul>
+	<div id="result"></div>
+	<script>
+		var item = document.querySelectorAll('.item');
+		// for (var i = 0; i < item.length; i++) {
+		// 	item[i].onclick = function(){
+		// 		console.log(i);
+		// 	}
+		// };
+
+		//方法一------------------------------------------------
+		// for (var i = 0; i < item.length; i++) {
+		// 	(function(e){
+		// 		item[e].onclick = function(){
+		// 			console.log(e);
+		// 		}
+		// 	})(i)
+		// }
+
+		//方法二------------------------------------------------
+		// function iteratorFactory(i){
+		// 	var click = function() {
+		// 		console.log(i);
+		// 	};
+		// 	return click;
+		// };
+		// for (var i = 0; i < item.length; i++) {
+		// 	item[i].onclick = iteratorFactory(i);
+		// }
+
+
+		//------------------------------------------------
+		// const PI = Math.PI
+		// PI = 23 // 浏览器报错
+
+		//------------------------------------------------
+		// class Animal {
+		//     constructor(){
+		//         this.type = 'animal'
+		//     }
+		//     says(say){
+		//         setTimeout(function(){
+		//             console.log(this.type + ' says ' + say)
+		//         }, 1000)
+		//     }
+		// }
+		//当我们使用箭头函数时，函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
+		//并不是因为箭头函数内部有绑定this的机制，实际原因是箭头函数根本没有自己的this，它的this是继承外面的，因此内部的this就是外层代码块的this。
+		 // var animal = new Animal()
+		 // animal.says('hi')  //undefined says hi  //this.type取不到
+
+
+		 //------------------------------------------------
+		 // var person = {
+		 // 	age:20,
+		 // 	name: 'mini',
+		 // 	gender: 'female'
+		 // }
+		 // document.getElementById('result').innerHTML = `<h3>我是${person.name}</h3><hr/>我今年${person.age}岁了`;
+
+
+
+		 //------------------------------------------------
+		 //通过对象字面量创建对象
+		// var human = {
+		//     breathe() {
+		//         console.log('breathing...');
+		//     }
+		// };
+		// var worker = {
+		//     __proto__: human, //设置此对象的原型为human,相当于继承human
+		//     company: 'freelancer',
+		//     work() {
+		//         console.log('working...');
+		//     }
+		// };
+		// human.breathe();//输出 ‘breathing...’
+		// //调用继承来的breathe方法
+		// worker.breathe();//输出 ‘breathing...’
+		// worker.work();//输出 ‘breathing...’
+
+
+		//不定参数----------------------------
+		//将所有参数相加的函数
+		// function add(...x){
+		// 	// console.log(x);  //[1,2,3]
+		// 	//reduce对数组中的所有元素调用指定的回调函数。该回调函数的返回值为累积结果，并且此返回值在下一次调用该回调函数时作为参数提供。
+		// 	return x.reduce((m,n)=>m+n);
+		// }
+		// //传递任意个数的参数
+		// console.log(add(1,2,3));//输出：6
+		// console.log(add(1,2,3,4,5));//输出：15
+
+		//test reduce method ----------------------------
+		// var arr = [2,5,11];
+		// var result = arr.reduceRight(function(acc,val){
+		// 	console.log(val);
+		// 	return acc + val;
+		// },2);
+		// console.log(result);
+
+		//拓展参数---------------------------------
+		// var people=['Wayou','John','Sherlock'];
+		// //sayHello函数本来接收三个单独的参数人妖，人二和人三
+		// function sayHello(people1,people2,people3){
+		// 	console.log(`Hello ${people1},${people2},${people3}`);
+		// }
+		// //但是我们将一个数组以拓展参数的形式传递，它能很好地映射到每个单独的参数
+		// sayHello(...people);//输出：Hello Wayou,John,Sherlock 
+
+		// //而在以前，如果需要传递数组当参数，我们需要使用函数的apply方法
+		// sayHello.apply(null,people);//输出：Hello Wayou,John,Sherlock 
+
+
+		//for of---------------------------------
+		var someArray = [ "a", "b", "c" ];
+ 		
+ 		// for(var i in someArray) {
+ 		// 	console.log(i);
+ 		// 	console.log(someArray[i]);
+ 		// };
+ 		
+		for (v of someArray) {
+		    console.log(v);//输出 a,b,c
+		}
+
+	</script>
+</body>
+</html>
