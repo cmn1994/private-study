@@ -3,29 +3,157 @@
 <head>
 	<meta charset="UTF-8">
 	<title>test</title>
+	
 </head>
 <body>
 	<h1 id="text">哈哈</h1>
-	<div id="div" style="color:red;font-size:20px" onclick="myalert()">
+	<!-- <div id="div" style="color:red;font-size:20px" onclick="myalert()"> -->
 	<p>111</p>
 	<p>222</p>
 	<p>333</p>
 	<p>444</p>
 	</div>
+
+	<div class="father">
+		<div class="fl"></div>
+		<div class="fr"></div>
+	</div>
 	<script>
-	var myalert = function (){
-		alert('my alert')
+	// var myalert = function (){
+	// 	alert('my alert')
+	// };
+	// 	var txt = document.getElementById('div');
+	// 	console.log(txt);
+	// 	var allchild = txt.childNodes;
+	// 	// allchild.push(777);
+	// 	var childArr = Array.prototype.slice.call(allchild,200)
+	// 	console.log(childArr);
+	// 	childArr.push(777);
+	// 	console.log(childArr);
+	// 	console.log(txt.style);
+	// 	console.log(txt.getAttribute('style'));
+
+	function add() {
+	    // 第一次执行时，定义一个数组专门用来存储所有的参数
+	    // console.log(arguments)
+	    var _args = [].slice.call(arguments);
+	    // console.log(_args);
+
+	    // 在内部声明一个函数，利用闭包的特性保存_args并收集所有的参数值
+	    var adder = function () {
+	        var _adder = function() {
+	        	console.log(arguments);
+	        	var aa = [].slice.call(arguments);
+	        	console.log(aa);
+	            // [].push.apply(_args, [].slice.call(arguments));
+	            console.log('-----');
+	            [].push.apply(_args, [].slice.call(arguments));
+	            console.log(_args);
+	            return _adder;
+	        };
+
+	        // 利用隐式转换的特性，当最后执行时隐式转换，并计算最终的值返回
+	        _adder.toString = function () {
+	            return _args.reduce(function (a, b) {
+	                return a + b;
+	            });
+	        }
+
+	        return _adder;
+	    }
+	    // console.log(adder.apply(null, [].slice.call(arguments)));
+	    return adder.apply(null, [].slice.call(arguments));
+	}
+
+	// console.log(add(1,2,3));
+	
+
+	// var arr = [1,2,3,4];
+	// Array.prototype.merge = function(num,char){
+	// 	var newArr = this.map(function(item,index,arr){
+	// 		return item + num;
+	// 	});
+	// 	return newArr.join(char);
+	// };
+
+	// console.log(arr.merge(1,'*'));
+
+
+
+	var arr = [1,2,3,4];
+	Array.prototype.merge = function(fn,char){
+		return this.map(fn).join(char);
 	};
-		var txt = document.getElementById('div');
-		console.log(txt);
-		var allchild = txt.childNodes;
-		// allchild.push(777);
-		var childArr = Array.prototype.slice.call(allchild,200)
-		console.log(childArr);
-		childArr.push(777);
-		console.log(childArr);
-		console.log(txt.style);
-		console.log(txt.getAttribute('style'));
+
+	var add = function(num){
+		return function(item,index,arr){
+			return item + num;
+		}
+	};
+
+	var minus = function(num){
+		return function(item,index,arr){
+			return item - num;
+		}
+	}
+	
+	// console.log(arr.merge(add(2),'*'));
+	// console.log(arr.merge(minus(1),'*'));
+
+	var currying = function(fn) {
+		console.log(arguments);
+	    var args = [].slice.call(arguments, 1);
+	    console.log(args);
+
+	    return function() {
+        // 主要还是收集所有需要的参数到一个数组中，便于统一计算
+        var _args = args.concat([].slice.call(arguments));
+        	return fn.apply(null, _args);
+	    }
+	}
+
+	var sum = currying(function() {
+	    var args = [].slice.call(arguments);
+	    return args.reduce(function(a, b) {
+	        return a + b;
+	    })
+	}, 5)
+
+	// console.log(sum(20, 10));  // 35
+
+	// function demo (){
+	// 	console.log(this);
+	// }
+
+	// demo();
+	// new demo();
+
+
+	// 先一本正经的创建一个构造函数，其实该函数与普通函数并无区别
+	var Person = function(name,age){
+		this.name = name;
+		this.age = age;
+		this.getName = function (){
+			return this.name;
+		}
+	};
+
+	var aa = function(){};
+	aa.prototype = {
+		sayHi: function(){
+			console.log('hi!');
+		}
+	};
+
+	var bb = new aa();
+	bb.age = 10;
+	
+	console.log(bb);
+	console.log(bb.__proto__);
+	console.log(bb.prototype);
+	console.log(aa.age);
+
+var a; var c = 1; a = 1; function a() { return true; } console.log(a);
 	</script>
 </body>
 </html>

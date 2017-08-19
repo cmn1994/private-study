@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="./base.css">
+
+</head>
+<body>
+	<input type="file" id="upImg">
+	<div id="output"></div>
+	<script>
+		var upBtn = document.getElementById('upImg');
+		upBtn.addEventListener('change',function(event) {
+			var file = event.target.files[0];
+			console.log(file);
+			var reader = new FileReader();
+			reader.readAsDataURL(file);
+			var src = window.webkitURL.createObjectURL(file);
+			console.log(src);
+
+
+			reader.onload = function(){
+				// var src = reader.result;
+				var html = '<img src="'+src+'">';
+				document.getElementById('output').innerHTML = html;
+			}
+		})
+
+	</script>
+</body>
+</html>
